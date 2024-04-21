@@ -2,10 +2,12 @@ on: push
 
 jobs:
     job1:
+        runs-on: ubuntu-latest
         steps:
         - run: pwd
         - run: ls
     job2:
-        -run: cmake --version
+        runs-on: ubuntu-latest
+        -run: node --version
     
     
