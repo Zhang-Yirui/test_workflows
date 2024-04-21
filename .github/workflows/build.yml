@@ -1,18 +1,27 @@
 on: push
 
 jobs:
-    job1:
+    built-in-ubuntu: 
         runs-on: ubuntu-latest
         steps:
+        - uses: actions/checkout@v4
         - run: pwd
-        - run: ls
-        - run: node --version
         - run: cmake --version
         - run: make --version
-    job2:
+        - run: mkdir build
+        - run: cd build
+        - run: cmake ..
+        - run: make
+    
+    built-in-windows: 
         runs-on: windows-latest
         steps:
-        - run: node --version
+        - uses: actions/checkout@v4
+        - run: pwd
         - run: cmake --version
         - run: make --version
+        - run: mkdir build
+        - run: cd build
+        - run: cmake ..
+        - run: make
     
