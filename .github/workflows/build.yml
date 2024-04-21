@@ -9,8 +9,6 @@ jobs:
         - run: ls
         - run: cmake --version
         - run: make --version
-        - run: mkdir build
-        - run: cd build
         - run: cmake ..
         - run: make
     
@@ -22,8 +20,6 @@ jobs:
         - run: ls
         - run: cmake --version
         - run: make --version
-        - run: mkdir build
-        - run: cd build
         - run: cmake ..
         - run: make
     
