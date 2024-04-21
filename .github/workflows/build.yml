@@ -6,9 +6,13 @@ jobs:
         steps:
         - run: pwd
         - run: ls
+        - run: node --version
+        - run: cmake --version
+        - run: make --version
     job2:
         runs-on: windows-latest
         steps:
         - run: node --version
-    
+        - run: cmake --version
+        - run: make --version
     
