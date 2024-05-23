@@ -8,53 +8,15 @@ on:
     workflow_dispatch:
 
 jobs:
-    print_some_info:
+    push_some_info:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
-            - name: show some info
+            - name: push some info
               run: |
-                  echo "github is ${{ github }}."
-                  echo "github.action is ${{ github.action }}."
-                  echo "github.action_path is ${{ github.action_path }}."
-                  echo "github.action_ref is ${{ github.action_ref }}."
-                  echo "github.action_repository is ${{ github.action_repository }}."
-                  echo "github.action_status is ${{ github.action_status }}."
-                  echo "github.actor is ${{ github.actor }}."
-                  echo "github.actor_id is ${{ github.actor_id }}."
-                  echo "github.api_url is ${{ github.api_url }}."
-                  echo "github.base_ref is ${{ github.base_ref }}."
-                  echo "github.env is ${{ github.env }}."
-                  echo "github.event is ${{ github.event }}."
-                  echo "github.event_name is ${{ github.event_name }}."
-                  echo "github.event_path is ${{ github.event_path }}."
-                  echo "github.graphql_url is ${{ github.graphql_url }}."
-                  echo "github.head_ref is ${{ github.head_ref }}."
-                  echo "github.job is ${{ github.job }}."
-                  echo "github.path is ${{ github.path }}."
-                  echo "github.ref is ${{ github.ref }}."
-                  echo "github.ref_name is ${{ github.ref_name }}."
-                  echo "github.ref_protected is ${{ github.ref_protected }}."
-                  echo "github.ref_type is ${{ github.ref_type }}."
-                  echo "github.repository is ${{ github.repository }}."
-                  echo "github.repository_id is ${{ github.repository_id }}."
-                  echo "github.repository_owner is ${{ github.repository_owner }}."
-                  echo "github.repository_owner_id is ${{ github.repository_owner_id }}."
-                  echo "github.repositoryUrl is ${{ github.repositoryUrl }}."
-                  echo "github.retention_days is ${{ github.retention_days }}."
-                  echo "github.run_id is ${{ github.run_id }}."
-                  echo "github.run_number is ${{ github.run_number }}."
-                  echo "github.run_attempt is ${{ github.run_attempt }}."
-                  echo "github.secret_source is ${{ github.secret_source }}."
-                  echo "github.server_url is ${{ github.server_url }}."
-                  echo "github.sha is ${{ github.sha }}."
-                  echo "github.token is ${{ github.token }}."
-                  echo "github.triggering_actor is ${{ github.triggering_actor }}."
-                  echo "github.workflow is ${{ github.workflow }}."
-                  echo "github.workflow_ref is ${{ github.workflow_ref }}."
-                  echo "github.workflow_sha is ${{ github.workflow_sha }}."
-                  echo "github.workspace is ${{ github.workspace }}."
-    
+                  cd ${{ github.workspace }}
+                  python3 ./push.py
+
     built-in-ubuntu:
         runs-on: ubuntu-latest
         steps:
@@ -66,11 +28,13 @@ jobs:
                   cd build 
                   cmake --version
                   cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -S ${{ github.workspace }} -B ${{ github.workspace }}/build
+              shell: bash
             - name: CMake CMake install
               run: |
                   cd ${{ github.workspace }}/build
                   cmake --build ${{ github.workspace }}/build --target calendar -- -j 18
                   ./calendar -s
+              shell: bash
 
     built-in-windows:
         runs-on: windows-latest
