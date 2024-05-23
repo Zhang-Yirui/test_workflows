@@ -41,8 +41,7 @@ jobs:
                 cd ${{ github.workspace }}/build
                 ls
                 cmake --build . --target INSTALL --config release
-                ls "${{ env.prefix }}"
-                cd "${{ env.prefix }}/bin"
+                
                 ls
                 ./calendar.exe -s
               
