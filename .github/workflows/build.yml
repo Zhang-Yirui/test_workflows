@@ -21,7 +21,7 @@ jobs:
                   ls
                   cmake --build ${{ github.workspace }}/build --target calendar -- -j 18
                   ls
-                  ./calendar.exe -s
+                  ./calendar -s
 
             # - run: ls
             # - run: cmake --version
