@@ -1,25 +1,37 @@
 on: push
 
 jobs:
-    built-in-ubuntu: 
+    built-in-ubuntu:
         runs-on: ubuntu-latest
         steps:
-        - uses: actions/checkout@v4
-        - run: pwd
-        - run: ls
-        - run: cmake --version
-        - run: make --version
-        - run: cmake ./
-        - run: make
-    
-    built-in-windows: 
+            - uses: actions/checkout@v4
+            - run: pwd
+            - run: ls
+            - run: cmake --version
+            - run: make --version
+            - run: cmake ./
+            - run: make
+
+    built-in-windows:
         runs-on: windows-latest
         steps:
-        - uses: actions/checkout@v4
-        - run: pwd
-        - run: ls
-        - run: cmake --version
-        - run: make --version
-        - run: cmake ./
-        - run: make
-    
+            - uses: actions/checkout@v4
+            - name: Display the path
+              run: echo ${env:PATH}
+              shell: pwsh
+            - name: Display github.workspace
+              run: |
+                  echo "github.workspace is ${{ github.workspace }}."
+                  ls ${{ github.workspace }}
+              shell: pwsh
+            # - name: Show cmake version
+            #   run: cmake --version
+            #   shell: pwsh
+
+            # - name: Show make version
+            #   run: make --version
+            #   shell: pwsh
+            # - name: ad
+            #   run: cmake ./
+
+            # - run: make
