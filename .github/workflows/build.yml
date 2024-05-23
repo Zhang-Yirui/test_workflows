@@ -26,25 +26,23 @@ jobs:
               shell: pwsh
             - name: CMake build
               run: |
-                cd ${{ github.workspace }}
-                ls
-                mkdir build
-                cd build 
-                cmake --version
-                cmake -DCMAKE_INSTALL_PREFIX=${{ github.workspace }} ../
-                ls
+                  cd ${{ github.workspace }}
+                  ls
+                  mkdir build
+                  cd build 
+                  cmake --version
+                  cmake -DCMAKE_BUILD_TYPE=Release -G "MinGW Makefiles" -S ${{ github.workspace }} -B ${{ github.workspace }}/build
+                  ls
               shell: pwsh
             - name: CMake CMake install
-              env: 
-                prefix: ${{ github.workspace }}
               run: |
-                cd ${{ github.workspace }}/build
-                ls
-                cmake --build . --target INSTALL --config release
-                
-                ls
-                ./calendar.exe -s
-              
+                  cd ${{ github.workspace }}/build
+                  ls
+                  cmake --build ${{ github.workspace }}/build --target calendar -- -j 18
+                  ls
+                  ./calendar.exe -s
+              shell: pwsh
+
             # - name: Show cmake version
             #   run: cmake --version
             #   shell: pwsh
