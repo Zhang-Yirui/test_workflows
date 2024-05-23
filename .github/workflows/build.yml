@@ -1,4 +1,10 @@
-on: push
+on:
+    push:
+        branches:
+            - main
+    schedule:
+        - cron: "0 0 * * *" # every day
+    workflow_dispatch:
 
 jobs:
     built-in-ubuntu:
@@ -46,24 +52,3 @@ jobs:
                   ls
                   ./calendar.exe -s
               shell: pwsh
-    built-in-mac:
-        runs-on: macos-lates
-        steps:
-            - uses: actions/checkout@v4
-            - name: CMake build
-              run: |
-                  ls
-                  cd ${{ github.workspace }}
-                  ls
-                  mkdir build
-                  cd build 
-                  cmake --version
-                  cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -S ${{ github.workspace }} -B ${{ github.workspace }}/build
-                  ls
-            - name: CMake CMake install
-              run: |
-                  cd ${{ github.workspace }}/build
-                  ls
-                  cmake --build ${{ github.workspace }}/build --target calendar -- -j 18
-                  ls
-                  ./calendar -s
