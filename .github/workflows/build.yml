@@ -31,11 +31,10 @@ jobs:
                 mkdir build
                 cd build 
                 cmake --version
-                cmake ./
-                make
+                cmake -DCMAKE_INSTALL_PREFIX=${{ github.workspace }} ../
                 ls
               shell: pwsh
-
+              
             # - name: Show cmake version
             #   run: cmake --version
             #   shell: pwsh
