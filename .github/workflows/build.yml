@@ -34,6 +34,17 @@ jobs:
                 cmake -DCMAKE_INSTALL_PREFIX=${{ github.workspace }} ../
                 ls
               shell: pwsh
+            - name: CMake CMake install
+              env: 
+                prefix: ${{ github.workspace }}
+              run: |
+                cd ${{ github.workspace }}/build
+                ls
+                cmake --build . --target INSTALL --config release
+                ls "${{ env.prefix }}"
+                cd "${{ env.prefix }}/bin"
+                ls
+                ./calendar.exe -s
               
             # - name: Show cmake version
             #   run: cmake --version
