@@ -13,7 +13,7 @@ jobs:
                   mkdir build
                   cd build 
                   cmake --version
-                  cmake -DCMAKE_BUILD_TYPE=Release -G "MinGW Makefiles" -S ${{ github.workspace }} -B ${{ github.workspace }}/build
+                  cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -S ${{ github.workspace }} -B ${{ github.workspace }}/build
                   ls
             - name: CMake CMake install
               run: |
