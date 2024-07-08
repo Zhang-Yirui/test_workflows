@@ -1,0 +1,14 @@
+on:
+    push:
+        branches: [main]
+    workflow_dispatch:
+
+jobs:
+    built-in-ubuntu:
+        runs-on: ubuntu-latest
+        steps:
+            - name: print some info
+              run: |
+                  cd ${{ github.workspace }}
+                  echo "${{ GITHUB_USERNAME }}"
+              shell: bash
