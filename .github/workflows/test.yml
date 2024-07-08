@@ -10,5 +10,7 @@ jobs:
             - name: print some info
               run: |
                   cd ${{ github.workspace }}
-                  echo "${{ GITHUB_USERNAME }}"
+                  echo "github.actor: ${{ github.actor }}"
+                  
               shell: bash
+    
