@@ -11,6 +11,6 @@ jobs:
               run: |
                   cd ${{ github.workspace }}
                   echo "github.actor: ${{ github.actor }}"
-                  
+                  echo "secrets.GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
               shell: bash
     
